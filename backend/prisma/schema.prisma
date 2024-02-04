@@ -15,7 +15,7 @@ model Product {
   name       String
   productLink String
   description String
-  price        Float
+  price        Int
   category   String
   imageUrl String
   createdAt DateTime @default(now())
