@@ -1,12 +1,20 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var cors = require('cors')
+
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 
 var app = express();
 const port = 3000;
+
+app.use(cors());
+
+
+
+// cors
 
 
 const { PrismaClient } = require("@prisma/client")
