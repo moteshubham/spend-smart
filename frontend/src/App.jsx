@@ -1,35 +1,19 @@
-import { useEffect, useState } from "react"
-import reactLogo from "./assets/react.svg"
-import viteLogo from "/vite.svg"
+import { createContext, useState } from "react"
 import "./App.css"
-import ProductCard from "./components/ProductCard"
+
+import HomePage from "./components/HomePage"
 import NavBar from "./components/NavBar"
 
-function App() {
-  console.log("data fetched")
-  const baseUrl = "http://localhost:3000"
-  const [products, setProducts] = useState(null)
-  // Fetch data from external API when the component is first rendered
-  useEffect(() => {
-    fetch(baseUrl + "/products")
-      .then((res) => {
-        return res.json()
-      })
-      .then((data) => {
-        setProducts(data)
-        console.log("data fetched")
-      })
-  }, [])
+export const Context = createContext()
 
-  const renderProducts = (products) => {
-    return products.map((product) => {
-      return <ProductCard key={product.id} product={product} />
-    })
-  }
+function App() {
+  const [searchText, setSearchText] = useState("")
   return (
     <>
-      <NavBar />
-      <div className="flex flex-wrap max-w-5xl m-auto space-x-3 space-y-5">{products && renderProducts(products)}</div>
+      <Context.Provider value={[searchText, setSearchText]}>
+        <NavBar />
+        <HomePage />
+      </Context.Provider>
     </>
   )
 }

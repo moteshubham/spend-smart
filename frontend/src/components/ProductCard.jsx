@@ -1,7 +1,7 @@
 import React from "react"
 import "../index.css"
 
-function ProductCard({ product }) {
+const ProductCard= ({ product }) => {
   console.log(product)
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">

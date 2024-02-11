@@ -1,15 +1,25 @@
-import React from "react"
+import React, { useContext, useState } from "react"
+import { Context } from "../App"
 
-function NavBar() {
+
+const NavBar = () => {
+  const [searchText, setSearchText] = useContext(Context)
+
+  const handleOnchange = (value) => {
+    setSearchText(value.toLowerCase())
+    console.log(value.toLowerCase());
+  }
+
   return (
     <>
       <nav className="bg-white border-gray-200 ">
         <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
-          <a href="https://flowbite.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
+          <a href="https://shubhammote.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap">Flowbite</span>
           </a>
-          <div className="flex md:order-1">
+
+          <div className="w-1/3 md:order-1">
             <button
               type="button"
               data-collapse-toggle="navbar-search"
@@ -32,6 +42,7 @@ function NavBar() {
               </svg>
               <span className="sr-only">Search</span>
             </button>
+
             <div className="relative hidden md:block">
               <div className="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
                 <svg
@@ -52,11 +63,12 @@ function NavBar() {
               </div>
               <input
                 type="text"
-                id="search-navbar"
+                id="search-navbar" onChange={(e) => handleOnchange(e.target.value)}
                 className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Search..."
+                placeholder="Search item to compare..."
               />
             </div>
+
             <button
               data-collapse-toggle="navbar-search"
               type="button"
@@ -77,10 +89,10 @@ function NavBar() {
                   stroke-width="2"
                   d="M1 1h15M1 7h15M1 13h15"
                 />
-         
               </svg>
             </button>
           </div>
+
           <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-2" id="navbar-search">
             <div className="relative mt-3 md:hidden">
               <div className="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
@@ -131,7 +143,6 @@ function NavBar() {
               </li>
             </ul>
           </div>
-         
         </div>
       </nav>
     </>
