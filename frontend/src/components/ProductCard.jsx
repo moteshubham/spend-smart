@@ -1,24 +1,24 @@
 import React from "react"
 import "../index.css"
+import { Link } from "react-router-dom"
 
-const ProductCard= ({ product }) => {
+const ProductCard = ({ product }) => {
   console.log(product)
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
-      <a href="#">
+      <Link to= {`/products/${product.id}`}>
         <img className="rounded-t-lg" src={product.imageUrl} alt="" />
-      </a>
+      </Link>
       <div className="p-5">
         <a href="#">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{product.name}</h5>
         </a>
-        <p className="mb-3 font-normal text-gray-700 ">
-          Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
-        </p>
+        <p className="mb-3 font-normal text-gray-700 ">{`${product.description}$`}</p>
+        <p className="mb-3 text-lg font-extrabold text-gray-700">{`₹ ${product.price}`}</p>
         <a
           href="#"
           className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-          Read more
+          Compare Smart
           <svg
             className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
             aria-hidden="true"

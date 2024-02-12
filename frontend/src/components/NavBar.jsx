@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react"
-import { Context } from "../App"
+import { SearchContext } from "../App"
 
 
 const NavBar = () => {
-  const [searchText, setSearchText] = useContext(Context)
+  const [searchText, setSearchText] = useContext(SearchContext)
 
   const handleOnchange = (value) => {
     setSearchText(value.toLowerCase())
@@ -14,7 +14,7 @@ const NavBar = () => {
     <>
       <nav className="bg-white border-gray-200 ">
         <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
-          <a href="https://shubhammote.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
+          <a href="https://localhost:5173/" className="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap">Flowbite</span>
           </a>
