@@ -1,0 +1,19 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+/* Force scrollbar to always be visible */
+body {
+    overflow-y: scroll;
+  }
+  body::-webkit-scrollbar {
+    width: 12px;
+  }  
