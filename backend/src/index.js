@@ -22,12 +22,16 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "public")))
 
 app.get("/products", async (req, res) => {
+  console.log("inside /products api");
   const allProducts = await prisma.product.findMany({})
   return res.status(200).json(allProducts)
 })
 
-app.get("/products/:id", async (req, res) => {
-  const { id } = req.params
+app.get('/products/:id', async (req, res) => {
+  const id = parseInt(req.params.id, 10)
+  console.log("inside /products/:id api");
+  console.log(id);
+  console.log(typeof(id));
   try {
     const product = await prisma.product.findUnique({
       where: { id: Number(id) },

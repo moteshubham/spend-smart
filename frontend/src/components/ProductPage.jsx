@@ -1,61 +1,44 @@
-import React, { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import Prompt from "./Prompt"
+import ProductDetails from "./ProductDetails"
 //import { Context } from "../App"
+
 const ProductPage = () => {
-    console.log("motemotmeotmeotmeotmeomo");
+  console.log("motemotmeotmeotmeotmeomo")
   const baseUrl = "http://localhost:3000"
-  const paramId = useParams()
-  const [selectedProduct, setSelectedProduct] = useState(null)
+  const paramId = useParams().id
+  const [selectedProduct, setSelectedProduct] = useState(1)
   const [QueriedProducts, setQueriedProducts] = useState(null)
+
   useEffect(() => {
-    fetch(baseUrl + "/products/" + paramId)
+    console.log("inside useEffect, paramId: ", paramId, typeof paramId)
+    fetch(`${baseUrl}/products/${paramId}`)
       .then((res) => res.json())
       .then((data) => {
         setSelectedProduct(data)
-        console.log("data fetched")
+        console.log("FETCH 1 ")
         console.log(data)
       })
 
-    // fetch(baseUrl + "/products/" + paramId)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setQueriedProducts(data)
-    //     console.log("data fetched")
-    //     console.log(data)
-    //   })
+    fetch(baseUrl + "/products/" + paramId)
+      .then((res) => res.json())
+      .then((data) => {
+        setQueriedProducts(data)
+        console.log("FETCH 2 ")
+        console.log(data)
+      })
   }, [])
 
   return (
-    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
-      <h1>Product Page</h1>
-      <a href="#">
-        <img className="rounded-t-lg" src={selectedProduct.imageUrl} alt="" />
-      </a>
-      <div className="p-5">
-        <a href="#">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{selectedProduct.name}</h5>
-        </a>
-        <p className="mb-3 font-normal text-gray-700 ">{`${selectedProduct.description}$`}</p>
-        <p className="mb-3 text-lg font-extrabold text-gray-700">{`₹ ${selectedProduct.price}`}</p>
-        {/* <a
-          href="#"
-          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-          Compare Smart
-          <svg
-            className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 10">
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M1 5h12m0 0L9 1m4 4L9 9"
-            />
-          </svg>
-        </a> */}
+    <div className="flex flex-wrap">
+      <div id="product-info-container" className="grid justify-center w-9/12 grid-cols-1 mx-auto mt-8 md:grid-cols-2 gap-x-9 gap-y-9" >
+        <div className="col-span-1 bg-white border border-gray-200 rounded-lg shadow ">
+         {<ProductDetails  selectedProduct={selectedProduct} />}
+        </div>
+        <div  className="col-span-1 ">
+          {<Prompt/>}
+        </div>
       </div>
     </div>
   )

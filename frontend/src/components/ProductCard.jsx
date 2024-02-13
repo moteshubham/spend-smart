@@ -1,14 +1,16 @@
-import React from "react"
 import "../index.css"
 import { Link } from "react-router-dom"
+
+import PropTypes from 'prop-types';
 
 const ProductCard = ({ product }) => {
   console.log(product)
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
-      <Link to= {`/products/${product.id}`}>
+      <Link  to={`/products/${product.id}`  }  >
         <img className="rounded-t-lg" src={product.imageUrl} alt="" />
       </Link>
+      {/* React components will only re-render if the state or props are updated. If you try to navigate to the page you are currently on, and there isn't a change in state or props in that component, the component will not re-render/refresh */} 
       <div className="p-5">
         <a href="#">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{product.name}</h5>
@@ -27,9 +29,9 @@ const ProductCard = ({ product }) => {
             viewBox="0 0 14 10">
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M1 5h12m0 0L9 1m4 4L9 9"
             />
           </svg>
@@ -39,4 +41,12 @@ const ProductCard = ({ product }) => {
   )
 }
 
+
+ProductCard.protoTypes = {
+  description : PropTypes.string,
+  id : PropTypes.number.isRequired,
+  product:PropTypes.object,
+  imageUrl: PropTypes.string
+}
 export default ProductCard
+

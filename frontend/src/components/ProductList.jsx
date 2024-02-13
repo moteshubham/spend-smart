@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import  { useContext, useEffect, useState } from "react"
 import ProductCard from "./ProductCard"
 import { SearchContext } from "../App"
 
@@ -8,7 +8,7 @@ const ProductList = () => {
 
   const [searchText, setSearchText] = useContext(SearchContext)
   const [products, setProducts] = useState(null)
-  const [filteredProducts, setFilteredProducts] = useState(null)
+  // const [filteredProducts, setFilteredProducts] = useState(null)
   // Fetch data from external API when the component is first rendered
   useEffect(() => {
     fetch(baseUrl + "/products")
@@ -32,9 +32,10 @@ const ProductList = () => {
 
   return (
     <div>
-      <div className="flex flex-wrap max-w-5xl m-auto space-x-3 space-y-5">{renderProducts}</div>
+      <div className="flex flex-wrap justify-center m-auto mt-8 gap-x-9 gap-y-9 ">{renderProducts}</div>
     </div>
   )
 }
 
 export default ProductList
+
