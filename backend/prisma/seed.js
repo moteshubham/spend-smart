@@ -16,7 +16,7 @@ const { faker } = require("@faker-js/faker")
 const prisma = new PrismaClient()
 
 async function main() {
-  const { count } = await prisma.product.deleteMany({})
+  
   const numberOfProducts = 20
 
   for (let i = 0; i < numberOfProducts; i++) {
@@ -24,11 +24,13 @@ async function main() {
     const product = await prisma.product.create({
       data: {
         name: faker.commerce.productName(),
+        isIphone: faker.datatype.boolean(),
         productLink: faker.internet.url(),
         description: faker.commerce.productDescription(),
         price: Math.floor(Math.random() * 100) + 1,
-        category: faker.color.human(),
+        category: faker.commerce.productMaterial(),
         imageUrl: faker.image.url(),
+        tags: faker.lorem.words(8),
       },
     })
   }

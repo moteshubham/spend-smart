@@ -14,10 +14,12 @@ model Product {   // TODO : rename to Products
   id         Int @id @default(autoincrement())
   name       String
   productLink String
+  isIphone     Boolean @default(false)
   description String
   price        Int
   category   String
   imageUrl String
+  tags String
   createdAt DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
