@@ -36,8 +36,13 @@ app.get('/products/:id', async (req, res) => {
     const product = await prisma.product.findUnique({
       where: { id: Number(id) },
     })
+
+    const shortlistedProducts = await prisma.$queryRaw
+    `SELECT * FROM product WHERE price < (SELECT price FROM product WHERE id = ${id})`
+
+  
     if (product) {
-      res.json(product)
+      res.json({product, shortlistedProducts})
     } else {
       res.status(404).json({ message: "Product not found" })
     }
@@ -45,6 +50,8 @@ app.get('/products/:id', async (req, res) => {
     res.status(500).json({ message: "Internal server error" })
   }
 })
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
