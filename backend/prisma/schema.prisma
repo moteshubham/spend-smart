@@ -10,12 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")  
 }
 
-model Product {   // TODO : rename to Products
+model Product {   
   id         Int @id @default(autoincrement())
   name       String
   productLink String
   isIphone     Boolean @default(false)
-  description String
+  description String @db.Text
   price        Int
   category   String
   imageUrl String
