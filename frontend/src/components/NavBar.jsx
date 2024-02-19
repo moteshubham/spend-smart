@@ -1,22 +1,29 @@
-import  { useContext } from "react"
+import { useContext } from "react"
 import { SearchContext } from "../App"
-
 
 const NavBar = () => {
   const [searchText, setSearchText] = useContext(SearchContext)
 
   const handleOnchange = (value) => {
     setSearchText(value.toLowerCase())
-    console.log(value.toLowerCase());
+    console.log(value.toLowerCase())
   }
+
+  const handleOnSubmit = (e) => {
+    setSearchText("chip")
+  }
+  // const history = useHistory();
+  // const handleClick = () => {
+  //   history.push(`/products/${product.id}`);
+  // };
 
   return (
     <>
       <nav className="bg-white border-gray-200 ">
         <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
           <a href="http://localhost:5173/home" className="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap">Flowbite</span>
+            <img src="https://i.ibb.co/j5h01VG/spendsmart-logo.png" alt="SpendSmart Logo" className="h-16" border="0" />
+            <span className="self-center text-2xl font-semibold whitespace-nowrap">SpendSmart</span>
           </a>
 
           <div className="w-1/3 md:order-1">
@@ -63,8 +70,10 @@ const NavBar = () => {
               </div>
               <input
                 type="text"
-                id="search-navbar" onChange={(e) => handleOnchange(e.target.value)}
-                className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                id="search-navbar"
+                onSubmit={(e) => handleOnSubmit(e)}
+                onChange={(e) => handleOnchange(e.target.value)}
+                className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 bg-gray-50 focus:ring-sky-500 focus:border-sk-500"
                 placeholder="Search item to compare..."
               />
             </div>
@@ -114,7 +123,7 @@ const NavBar = () => {
               <input
                 type="text"
                 id="search-navbar"
-                className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
+                className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 bg-gray-50 focus:ring-sky-500 focus:border-sky-500 "
                 placeholder="Search..."
               />
             </div>
@@ -122,7 +131,7 @@ const NavBar = () => {
               <li>
                 <a
                   href="#"
-                  className="block px-3 py-2 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
+                  className="block px-3 py-2 text-white rounded bg-sky-700 md:bg-transparent md:text-sky-700 md:p-0 "
                   aria-current="page">
                   Home
                 </a>
@@ -130,14 +139,14 @@ const NavBar = () => {
               <li>
                 <a
                   href="#"
-                  className="block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">
+                  className="block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-700 md:p-0 ">
                   About
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">
+                  className="block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-700 md:p-0 ">
                   Services
                 </a>
               </li>

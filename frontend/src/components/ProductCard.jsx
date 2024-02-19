@@ -7,7 +7,7 @@ const ProductCard = ({ product }) => {
   console.log(product)
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
-      <Link  to={`/products/${product.id}`  }  >
+      <Link reloadDocument to={`/products/${product.id}`  }  >
         <img className="rounded-t-lg" src={product.imageUrl} alt="" />
       </Link>
       {/* React components will only re-render if the state or props are updated. If you try to navigate to the page you are currently on, and there isn't a change in state or props in that component, the component will not re-render/refresh */} 
@@ -19,7 +19,7 @@ const ProductCard = ({ product }) => {
         <p className="mb-3 text-lg font-extrabold text-gray-700">{`₹ ${product.price}`}</p>
         <a
           href="#"
-          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300">
           Compare Smart
           <svg
             className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
