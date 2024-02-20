@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from "react-router-dom"
 import HomePage from "./components/HomePage"
 import NavBar from "./components/NavBar"
 import ProductPage from "./components/ProductPage"
+import Footer from "./components/Footer"
 
 export const SearchContext = createContext()
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/products/:id" element={<ProductPage></ProductPage>} />
         </Routes>
       </SearchContext.Provider>
+      <Footer/>
     </div>
   )
 }
