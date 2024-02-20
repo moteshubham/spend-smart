@@ -38,8 +38,17 @@ app.get('/products/:id', async (req, res) => {
     })
 
     const shortlistedProducts = await prisma.$queryRaw
-    `SELECT * FROM product WHERE price < (SELECT price FROM product WHERE id = ${id})`
-
+    `SELECT *
+    FROM (
+      SELECT *,
+             SUM(price) OVER (ORDER BY price ASC) AS cumulative_sum
+      FROM product
+      WHERE price < (SELECT price FROM product WHERE id = ${id})
+    ) AS subquery
+    WHERE cumulative_sum < (SELECT price FROM product WHERE id = ${id})
+    ORDER BY price ASC`
+    
+    
   
     if (product) {
       res.json({product, shortlistedProducts})
