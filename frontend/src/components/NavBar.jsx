@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { SearchContext } from "../App"
+import { NavLink } from "react-router-dom"
 
 const NavBar = () => {
   const [searchText, setSearchText] = useContext(SearchContext)
@@ -12,19 +13,15 @@ const NavBar = () => {
   const handleOnSubmit = (e) => {
     setSearchText("chip")
   }
-  // const history = useHistory();
-  // const handleClick = () => {
-  //   history.push(`/products/${product.id}`);
-  // };
 
   return (
     <>
       <nav className="bg-white border-gray-200 ">
         <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
-          <a href="http://localhost:5173/home" className="flex items-center space-x-3 rtl:space-x-reverse">
+          <NavLink to={`/home`} className="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="https://i.ibb.co/j5h01VG/spendsmart-logo.png" alt="SpendSmart Logo" className="h-16" border="0" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap">SpendSmart</span>
-          </a>
+          </NavLink>
 
           <div className="w-1/3 md:order-1">
             <button
@@ -129,26 +126,44 @@ const NavBar = () => {
             </div>
             <ul className="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white ">
               <li>
-                <a
-                  href="#"
-                  className="block px-3 py-2 text-white rounded bg-sky-700 md:bg-transparent md:text-sky-700 md:p-0 "
-                  aria-current="page">
+                <NavLink
+                  to={`/home`}
+                  style={({ isActive }) => ({
+                    color: isActive ? "rgb(3,105,161)" : "",
+                  })}
+                  className="block px-3 py-2 text-gray-900 rounded bg-sky-700 md:bg-transparent md:hover:text-sky-700 md:p-0 ">
                   Home
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
-                  href="#"
+                <NavLink
+                  to={`/about`}
+                  style={({ isActive }) => ({
+                    color: isActive ? "rgb(3,105,161)" : "",
+                  })}
                   className="block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-700 md:p-0 ">
                   About
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-700 md:p-0 ">
+                <NavLink
+                  to={`/services`}
+                  style={({ isActive }) => ({
+                    color: isActive ? "rgb(3,105,161)" : "",
+                  })}
+                  className={`block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-700 md:p-0 `}>
                   Services
-                </a>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to={`/contact`}
+                  style={({ isActive }) => ({
+                    color: isActive ? "rgb(3,105,161)" : "",
+                  })}
+                  className={`block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-700 md:p-0 `}>
+                  Contact Us
+                </NavLink>
               </li>
             </ul>
           </div>
