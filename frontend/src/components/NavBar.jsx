@@ -1,17 +1,24 @@
-import { useContext } from "react"
-import { SearchContext } from "../App"
-import { NavLink } from "react-router-dom"
+
+import { NavLink, useNavigate } from "react-router-dom"
+import {  useState } from "react"
+// import {useContext} from  'react'
+
+
 
 const NavBar = () => {
-  const [searchText, setSearchText] = useContext(SearchContext)
+  // const [searchText, setSearchText] = useContext(SearchContext)
+ const [searchText, setSearchText] = useState("")
 
   const handleOnchange = (value) => {
     setSearchText(value.toLowerCase())
     console.log(value.toLowerCase())
   }
-
+  const navigate = useNavigate()
   const handleOnSubmit = (e) => {
-    setSearchText("chip")
+    e.preventDefault()
+    if (!searchText.trim()) return
+    console.log(searchText);
+    navigate(`/search?query=${encodeURIComponent(searchText)}`)
   }
 
   return (
@@ -65,14 +72,15 @@ const NavBar = () => {
                 </svg>
                 <span className="sr-only">Search icon</span>
               </div>
-              <input
-                type="text"
-                id="search-navbar"
-                onSubmit={(e) => handleOnSubmit(e)}
-                onChange={(e) => handleOnchange(e.target.value)}
-                className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 bg-gray-50 focus:ring-sky-500 focus:border-sk-500"
-                placeholder="Search item to compare..."
-              />
+              <form onSubmit={handleOnSubmit}>
+                <input
+                  type="text"
+                  id="search-navbar"
+                  onChange={(e) => handleOnchange(e.target.value)}
+                  className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 bg-gray-50 focus:ring-sky-500 focus:border-sk-500"
+                  placeholder="Search item to compare..."
+                />
+              </form>
             </div>
 
             <button

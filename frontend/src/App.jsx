@@ -8,6 +8,7 @@ import Footer from "./components/Footer"
 import About from "./components/About"
 import Services from "./components/Services"
 import Contact from "./components/Contact"
+import Search from "./components/Search"
 
 export const SearchContext = createContext()
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/search"  element={<Search />} />
         </Routes>
       </SearchContext.Provider>
       <Footer/>

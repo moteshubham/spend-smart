@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import Prompt from "./Prompt"
+import Comparison from "./Comparison"
 import ProductDetails from "./ProductDetails"
-import ProductList from "./ProductList"
+
 import SortedProductList from "./QueriedProductList"
 //import { Context } from "../App"
 
@@ -22,6 +22,7 @@ const ProductPage = () => {
         setQueriedProducts(data.shortlistedProducts)
         console.log("FETCH 1 ")
         console.log(data.shortlistedProducts)
+        console.log(queriedProducts)
       })
   }, [])
 
@@ -33,16 +34,13 @@ const ProductPage = () => {
         <div className="col-span-1 bg-white border border-gray-200 rounded-lg shadow ">
           {<ProductDetails selectedProduct={selectedProduct} />}
         </div>
-        <div className="col-span-1 ">{<Prompt />}</div>
-      </div>
-    <hr />
-      <div
-        id="shortlisted-container"
-        className="justify-center mx-auto mt-8">
-        <div className="bg-white rounded-lg shadow ">
-          {<SortedProductList queriedProducts={queriedProducts} />}
+        <div className="col-span-1 ">
+          {<Comparison selectedProduct={selectedProduct} queriedProducts={queriedProducts} />}
         </div>
-     
+      </div>
+      <hr />
+      <div id="shortlisted-container" className="justify-center mx-auto mt-8">
+        <div className="bg-white rounded-lg shadow ">{<SortedProductList queriedProducts={queriedProducts} />}</div>
       </div>
     </div>
   )

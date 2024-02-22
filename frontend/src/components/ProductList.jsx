@@ -1,12 +1,14 @@
-import  { useContext, useEffect, useState } from "react"
+import {  useContext, useEffect, useState } from "react"
 import ProductCard from "./ProductCard"
-import { SearchContext } from "../App"
+// import { SearchContext } from "../App"
 
-const ProductList = () => {
-  // console.log("data fetched")
+
+const ProductList = ({query}) => {
+  
   const baseUrl = "http://localhost:3000"
 
-  const [searchText, setSearchText] = useContext(SearchContext)
+  const [searchText, setSearchText] = useState("")
+  
   const [products, setProducts] = useState(null)
   // const [filteredProducts, setFilteredProducts] = useState(null)
   // Fetch data from external API when the component is first rendered
@@ -16,9 +18,9 @@ const ProductList = () => {
       .then((data) => {
         setProducts(data)
         console.log("data fetched")
-        // console.log(data)
+        setSearchText(query)
       })
-  }, [])
+  }, [query])
 
   const filteredProductsArray = searchText
     ? products.filter((p) => p.name.toLowerCase().includes(searchText.toLowerCase()))
@@ -38,4 +40,3 @@ const ProductList = () => {
 }
 
 export default ProductList
-
