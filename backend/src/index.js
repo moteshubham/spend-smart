@@ -3,7 +3,7 @@ const express = require("express")
 const app = express()
 const path = require("path")
 const cors = require("cors")
-const bodyParser=require("body-parser");
+const bodyParser = require("body-parser")
 
 const cookieParser = require("cookie-parser")
 const logger = require("morgan")
@@ -21,24 +21,46 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "public")))
 
+
 app.get("/products", async (req, res) => {
-  console.log("inside /products api");
-  const allProducts = await prisma.product.findMany({})
-  return res.status(200).json(allProducts)
+  try {
+    console.log("inside /products api")
+    const { query } = req.query
+    let allProducts
+
+    if (query) {
+      // Filter products by name containing the query string
+      allProducts = await prisma.product.findMany({
+        where: {
+          name: {
+            contains: query,
+          },
+        },
+      })
+    } else {
+      // Fetch all products if no query is provided
+      allProducts = await prisma.product.findMany({})
+    }
+
+    // Return the products as JSON response
+    return res.status(200).json(allProducts)
+  } catch (error) {
+    console.error("Error fetching products:", error)
+    return res.status(500).json({ error: "Internal server error" })
+  }
 })
 
-app.get('/products/:id', async (req, res) => {
+app.get("/products/:id", async (req, res) => {
   const id = parseInt(req.params.id, 10)
-  console.log("inside /products/:id api");
-  console.log(id);
-  console.log(typeof(id));
+  console.log("inside /products/:id api")
+  console.log(id)
+  console.log(typeof id)
   try {
     const product = await prisma.product.findUnique({
       where: { id: Number(id) },
     })
 
-    const shortlistedProducts = await prisma.$queryRaw
-    `SELECT *
+    const shortlistedProducts = await prisma.$queryRaw`SELECT *
     FROM (
       SELECT *,
              SUM(price) OVER (ORDER BY price ASC) AS cumulative_sum
@@ -47,11 +69,9 @@ app.get('/products/:id', async (req, res) => {
     ) AS subquery
     WHERE cumulative_sum < (SELECT price FROM product WHERE id = ${id})
     ORDER BY price ASC`
-    
-    
-  
+
     if (product) {
-      res.json({product, shortlistedProducts})
+      res.json({ product, shortlistedProducts })
     } else {
       res.status(404).json({ message: "Product not found" })
     }
@@ -59,8 +79,6 @@ app.get('/products/:id', async (req, res) => {
     res.status(500).json({ message: "Internal server error" })
   }
 })
-
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -10,7 +10,7 @@ const Search = () => {
   useEffect(() => {}, [query])
   return (
     <div className="min-h-full">
-      <h1 className="text-center">Results for &#34;{query}&#34;</h1>
+      <h1 className="pt-3 text-center">Results for &#34;{query}&#34;</h1>
       <ProductList query={query} />
     </div>
   )

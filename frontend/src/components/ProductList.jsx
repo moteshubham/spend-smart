@@ -8,13 +8,17 @@ const ProductList = ({ query }) => {
   const [products, setProducts] = useState(null)
 
   useEffect(() => {
-    fetch(baseUrl + "/products")
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data)
-        console.log("data fetched")
-        setSearchText(query)
-      })
+    if (query) {
+      fetch(baseUrl + "/products?query=" + encodeURIComponent(query))
+        .then((res) => res.json())
+        .then((data) => {
+          setProducts(data)
+          console.log(data)
+        })
+        .catch((error) => {
+          console.error("Error fetching products:", error)
+        })
+    }
   }, [query])
 
   const filteredProductsArray = searchText
