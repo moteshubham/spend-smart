@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="w-full max-w-screen-xl p-4 mx-auto md:py-8">
         <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
-          <NavLink to={'/home'} className="flex items-center mb-4 space-x-3 sm:mb-0 rtl:space-x-reverse">
+          <NavLink to={"/home"} className="flex items-center mb-4 space-x-3 sm:mb-0 rtl:space-x-reverse">
             <img src="https://i.ibb.co/j5h01VG/spendsmart-logo.png" alt="SpendSmart Logo" className="h-16" border="0" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap ">SpendSmart</span>
           </NavLink>

@@ -1,17 +1,12 @@
-import {  useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import ProductCard from "./ProductCard"
-// import { SearchContext } from "../App"
 
-
-const ProductList = ({query}) => {
-  
+const ProductList = ({ query }) => {
   const baseUrl = "http://localhost:3000"
 
   const [searchText, setSearchText] = useState("")
-  
   const [products, setProducts] = useState(null)
-  // const [filteredProducts, setFilteredProducts] = useState(null)
-  // Fetch data from external API when the component is first rendered
+
   useEffect(() => {
     fetch(baseUrl + "/products")
       .then((res) => res.json())

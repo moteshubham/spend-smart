@@ -7,9 +7,6 @@ const Comparison = ({ queriedProducts, selectedProduct }) => {
     return totalPrice
   }
   let i = 0
-  {
-    /* <div className="text-center ">Unlock greater value by opting for below group of items instead of just one</div> */
-  }
 
   return (
     <div>
@@ -31,36 +28,40 @@ const Comparison = ({ queriedProducts, selectedProduct }) => {
           </tbody>
         </table>
       </div>
-      { queriedProducts.length<=1 ? '' :(<div className="mt-8">
-        {/* Display total price of queried products */}
+      {queriedProducts.length <= 1 ? (
+        ""
+      ) : (
+        <div className="mt-8">
+          {/* Display total price of queried products */}
 
-        {/* Display table of queried products */}
-        <table className="w-full">
-          <thead className="bg-gray-200">
-            <tr>
-              <th className="px-0 py-2">No.</th>
-              <th className="px-4 py-2">Shortlisted Products For You To Compare</th>
-              <th className="px-4 py-2 text-right">Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {queriedProducts.map((product) => (
-              <tr key={product.id} className="border-b">
-                <td className="px-4 py-2">{++i}</td>
-                <td className="px-4 py-2">{product.name}</td>
-                <td className="px-4 py-2 text-right">&#8377;{product.price}</td>
+          {/* Display table of queried products */}
+          <table className="w-full">
+            <thead className="bg-gray-200">
+              <tr>
+                <th className="px-0 py-2">No.</th>
+                <th className="px-4 py-2">Shortlisted Products For You To Compare</th>
+                <th className="px-4 py-2 text-right">Price</th>
               </tr>
-            ))}
-            <tr>
-              <td className="px-4 py-2 bg-gray-100 ">&rarr; </td>
+            </thead>
+            <tbody>
+              {queriedProducts.map((product) => (
+                <tr key={product.id} className="border-b">
+                  <td className="px-4 py-2">{++i}</td>
+                  <td className="px-4 py-2">{product.name}</td>
+                  <td className="px-4 py-2 text-right">&#8377;{product.price}</td>
+                </tr>
+              ))}
+              <tr>
+                <td className="px-4 py-2 bg-gray-100 ">&rarr; </td>
 
-              <td className="px-4 py-2 bg-gray-100">Total Price of Shortlisted Products: </td>
+                <td className="px-4 py-2 bg-gray-100">Total Price of Shortlisted Products: </td>
 
-              <td className="px-4 py-2 font-bold text-right bg-gray-100">&#8377;{calculateTotalPrice()} </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>)}
+                <td className="px-4 py-2 font-bold text-right bg-gray-100">&#8377;{calculateTotalPrice()} </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
       <div className="mt-8 text-lg font-semibold text-center">
         {i <= 1 ? (
           <span>Oops! No item to comapare with in database </span>

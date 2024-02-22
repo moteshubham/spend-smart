@@ -1,13 +1,8 @@
-
 import { NavLink, useNavigate } from "react-router-dom"
-import {  useState } from "react"
-// import {useContext} from  'react'
-
-
+import { useState } from "react"
 
 const NavBar = () => {
-  // const [searchText, setSearchText] = useContext(SearchContext)
- const [searchText, setSearchText] = useState("")
+  const [searchText, setSearchText] = useState("")
 
   const handleOnchange = (value) => {
     setSearchText(value.toLowerCase())
@@ -17,13 +12,13 @@ const NavBar = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault()
     if (!searchText.trim()) return
-    console.log(searchText);
+    console.log(searchText)
     navigate(`/search?query=${encodeURIComponent(searchText)}`)
   }
 
   return (
     <>
-      <nav className="bg-white border-gray-200 ">
+      <nav className="bg-white border-gray-200 shadow-md ">
         <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
           <NavLink to={`/home`} className="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="https://i.ibb.co/j5h01VG/spendsmart-logo.png" alt="SpendSmart Logo" className="h-16" border="0" />

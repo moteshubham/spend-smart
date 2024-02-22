@@ -2,7 +2,6 @@ const About = () => {
   return (
     <div className="flex flex-wrap items-center justify-center w-4/5 px-4 py-8 mx-auto">
       <h1 className="mb-4 text-3xl font-semibold text-gray-800">About SpendSmart</h1>
-
       <div className="flex flex-wrap ">
         <div className="w-full px-4 mb-8 md:w-1/2 lg:w-1/3">
           <div className="p-8 bg-white rounded-lg shadow-md">
@@ -13,7 +12,6 @@ const About = () => {
             </p>
           </div>
         </div>
-
         <div className="w-full px-4 mb-8 md:w-1/2 lg:w-1/3">
           <div className="p-8 bg-white rounded-lg shadow-md">
             <h2 className="mb-4 text-xl font-semibold text-gray-800">Our Vision</h2>
@@ -23,7 +21,6 @@ const About = () => {
             </p>
           </div>
         </div>
-
         <div className="w-full px-4 mb-8 md:w-1/2 lg:w-1/3">
           <div className="p-8 bg-white rounded-lg shadow-md">
             <h2 className="mb-4 text-xl font-semibold text-gray-800">Our Values</h2>

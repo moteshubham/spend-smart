@@ -3,7 +3,7 @@ const Contact = () => {
     <div className="w-4/5 px-4 py-8 mx-auto">
       <h1 className="block max-w-full mb-4 text-3xl font-semibold text-center text-gray-800">Contact Us</h1>
 
-      <div className="max-w-md p-4 mx-auto border rounded-xl">
+      <div className="max-w-md p-4 mx-auto mt-4 border rounded-xl">
         <form action="https://formspree.io/f/xoqgdorq" method="POST">
           <div className="mb-4">
             <label htmlFor="name" className="block text-sm font-medium text-gray-700">
