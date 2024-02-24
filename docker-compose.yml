@@ -30,14 +30,5 @@ services:
     volumes:
       - ./backend:/app
 
-  frontend:
-    build: ./frontend
-    ports:
-      - "5173:5173"
-    environment:
-      - HOST=0.0.0.0
-    volumes:
-      - ./frontend:/app
-
 volumes:
   mysql-data:
