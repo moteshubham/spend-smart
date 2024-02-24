@@ -22,7 +22,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: [aws-spendsmart]
+    runs-on: [self-hosted]
     steps:
       - name: Pull Docker Compose services
         run: docker-compose -f docker-compose.yml pull
