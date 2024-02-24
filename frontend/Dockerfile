@@ -16,5 +16,10 @@ COPY . .
 # Vite uses port 3000 by default, but here we set it to use port 5173
 EXPOSE 5173
 
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
+
 # Command to run the application using Vite in development mode
 CMD ["yarn", "dev"]
