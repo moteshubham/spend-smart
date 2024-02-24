@@ -2,28 +2,31 @@ name: CICD
 
 on:
   push:
-    branches: [cicd-docker-ec2]
+    branches: [main]
 
 jobs:
-  build:
-    runs-on: [ubuntu-latest]
+  build-and-deploy:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout source
         uses: actions/checkout@v3
-      - name: Login to docker hub
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} 
-      - name: Build docker image
-        run: docker build -t moteshubham/spendsmart-app .
-      - name: Publish image to docker hub
-        run: docker push moteshubham/spendsmart-app:latest
-        
-  deploy:
-    needs: build
-    runs-on: [aws-ec2]
-    steps:
-      - name: Pull image from docker hub
-        run: docker pull moteshubham/spendsmart-app:latest
-      - name: Delete old container
-        run: docker rm -f spendsmart-app-container
-      - name: Run docker container
-        run: docker run -d -p 5000:5000 --name spendsmart-app-container moteshubham/spendsmart-app
+
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker Compose services
+        run: |
+          docker-compose -f docker-compose.yml build
+          docker-compose -f docker-compose.yml push
+
+      - name: Deploy to EC2
+        runs-on: aws-ec2
+        steps:
+          - name: Pull Docker Compose services
+            run: docker-compose -f docker-compose.yml pull
+
+          - name: Remove old containers
+            run: docker-compose -f docker-compose.yml down
+
+          - name: Deploy using Docker Compose
+            run: docker-compose -f docker-compose.yml up -d
