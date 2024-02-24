@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import ProductCard from "./ProductCard"
 
 const ProductList = ({ query }) => {
-  const baseUrl = "http://localhost:3000"
+  const baseUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"
 
   const [searchText, setSearchText] = useState("")
   const [products, setProducts] = useState(null)

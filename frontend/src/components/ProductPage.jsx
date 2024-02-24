@@ -8,7 +8,7 @@ import SortedProductList from "./QueriedProductList"
 
 const ProductPage = () => {
   console.log("motemotmeotmeotmeotmeomo")
-  const baseUrl = "http://localhost:3000"
+  const baseUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"
   const paramId = useParams().id
   const [selectedProduct, setSelectedProduct] = useState(1)
   const [queriedProducts, setQueriedProducts] = useState([])
