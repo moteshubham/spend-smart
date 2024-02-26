@@ -1,5 +1,5 @@
 # Use the specified Node.js version
-FROM node:20.9.0
+FROM node:20.9.0-alpine3.18
 
 # Set the working directory in the Docker container
 WORKDIR /usr/src/app
@@ -23,7 +23,12 @@ COPY . .
 EXPOSE 3000
 
 # Run Prisma migrations, seed the database, and start the application
-COPY entrypoint.sh /usr/src/app/entrypoint.sh
+COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
 RUN chmod +x /usr/src/app/entrypoint.sh
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+# COPY entrypoint.sh /entrypoint.sh
+# RUN chmod +x /entrypoint.sh
+# ENTRYPOINT ["/entrypoint.sh"]
+# ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+
 CMD ["yarn", "run", "dev"]
