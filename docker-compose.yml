@@ -24,6 +24,7 @@ services:
     container_name: nodeappcontainer
     build: ./backend
     image: moteshubham/spendsmart-backend:v1
+    options: --user root
     ports:
       - 3000:3000
     expose:
