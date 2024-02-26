@@ -22,7 +22,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: [aws-spendsmart]
+    runs-on: [self-hosted]
     steps:
       - name: Checkout source
         uses: actions/checkout@v3
