@@ -23,12 +23,13 @@ COPY . .
 EXPOSE 3000
 
 # Run Prisma migrations, seed the database, and start the application
-COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
-RUN sudo chmod 777 /usr/src/app/entrypoint.sh
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+COPY ./entrypoint.sh /tmp/entrypoint.sh
+RUN chmod 777 /tmp/entrypoint.sh
+ENTRYPOINT ["/tmp/entrypoint.sh"]
 # COPY entrypoint.sh /entrypoint.sh
 # RUN chmod +x /entrypoint.sh
 # ENTRYPOINT ["/entrypoint.sh"]
 # ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
 
 CMD ["yarn", "run", "dev"]
+#CMD ["sh","-c","chmod 777 /usr/src/app/entrypoint.sh && /usr/src/app/entrypoint.sh"]
