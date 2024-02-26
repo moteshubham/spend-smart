@@ -22,7 +22,7 @@ const NavBar = () => {
         <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
           <NavLink to={`/home`} className="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="https://i.ibb.co/j5h01VG/spendsmart-logo.png" alt="SpendSmart Logo" className="h-16" border="0" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap">SpendSmart</span>
+            <span className="self-center block text-2xl font-semibold whitespace-nowrap">SpendSmart</span>
           </NavLink>
 
           <div className="w-1/3 md:order-1">
@@ -102,7 +102,7 @@ const NavBar = () => {
             </button>
           </div>
 
-          <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-2" id="navbar-search">
+          <div className="items-center justify-between w-full md:flex md:w-auto md:order-2" id="navbar-search">
             <div className="relative mt-3 md:hidden">
               <div className="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
                 <svg
@@ -120,12 +120,15 @@ const NavBar = () => {
                   />
                 </svg>
               </div>
+              <form onSubmit={handleOnSubmit}>
               <input
                 type="text"
                 id="search-navbar"
+                onChange={(e) => handleOnchange(e.target.value)}
                 className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 bg-gray-50 focus:ring-sky-500 focus:border-sky-500 "
                 placeholder="Search..."
               />
+              </form>
             </div>
             <ul className="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white ">
               <li>
@@ -134,7 +137,7 @@ const NavBar = () => {
                   style={({ isActive }) => ({
                     color: isActive ? "rgb(3,105,161)" : "",
                   })}
-                  className="block px-3 py-2 text-gray-900 rounded bg-sky-700 md:bg-transparent md:hover:text-sky-700 md:p-0 ">
+                  className="block px-3 py-2 text-gray-900 bg-transparent rounded bg-sky-700 md:hover:text-sky-700 md:p-0 ">
                   Home
                 </NavLink>
               </li>

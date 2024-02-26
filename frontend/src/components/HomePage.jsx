@@ -6,7 +6,7 @@ const HomePage = () => {
       <div className="w-4/5 min-h-screen px-4 py-4 mx-auto text-center">
         <main className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <h1 className="text-6xl font-bold text-gray-900">Welcome to <span className="text-sky-700">SpendSmart</span></h1>
+            <h1 className="text-6xl font-bold text-gray-900">Welcome to <span className=" text-sky-700">SpendSmart</span></h1>
             <p className="mt-2 text-lg text-gray-600">
               Simplify your financial management and make smarter spending decisions.
             </p>
