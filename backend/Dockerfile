@@ -24,7 +24,7 @@ EXPOSE 3000
 
 # Run Prisma migrations, seed the database, and start the application
 COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
-RUN chmod +x /usr/src/app/entrypoint.sh
+RUN chmod 777 /usr/src/app/entrypoint.sh
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
 # COPY entrypoint.sh /entrypoint.sh
 # RUN chmod +x /entrypoint.sh
