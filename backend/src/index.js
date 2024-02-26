@@ -79,7 +79,7 @@ app.get("/products/:id", async (req, res) => {
     console.log(error);
     res.status(500).json({ message: "Internal server error" })
   }
-})
+}) 
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
