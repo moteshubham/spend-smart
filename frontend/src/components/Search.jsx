@@ -6,7 +6,8 @@ const Search = () => {
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
   const query = searchParams.get("query")
-
+  console.log(query);
+  console.log(searchParams);
   useEffect(() => {}, [query])
   return (
     <div className="min-h-full">

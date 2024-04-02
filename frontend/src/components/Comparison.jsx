@@ -32,7 +32,6 @@ const Comparison = ({ queriedProducts, selectedProduct }) => {
         ""
       ) : (
         <div className="mt-8">
-          {/* Display total price of queried products */}
 
           {/* Display table of queried products */}
           <table className="w-full">
@@ -53,6 +52,7 @@ const Comparison = ({ queriedProducts, selectedProduct }) => {
               ))}
               <tr>
                 <td className="px-4 py-2 bg-gray-100 ">&rarr; </td>
+          {/* Display total price of queried products */}
 
                 <td className="px-4 py-2 bg-gray-100">Total Price of Shortlisted Products: </td>
 
